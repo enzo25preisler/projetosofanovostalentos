@@ -20,17 +20,36 @@
             <tbody>
                 <tr th:each="umCliente : ${listaClientes}">
                     <td th:text="${umCliente.id}"></td>
-                    <td th:text="${umCliente.nome}"></td>
-                    <td th:text="${umCliente.telefone}"></td>
+                    <td th:text="${umCliente.pessoaCli}"></td>
+                    <td th:text="${umCliente.pessoaCli.telefone}"></td>
                     <td>
                         <a th:href="@{'/clientes/alterar/' + ${umCliente.id}}" class="btn btn-warning">Alterar</a>
-                        <a th:href="@{'/clientes/deletar/' + ${umCliente.id}}" class="btn btn-danger">Excluir</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${umCliente.id}">Excluir</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </main>
+    <div class="modal" tabindex="-1" id="modalcliente">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que quer excluir o Cliente?</p>
+                <p><b>ATENÇÃO</b>: Se não estiver conseguindo excluir um CLIENTE provavelmente ele deve estar associado em outro cadastro!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <footer th:include="layout :: footer"></footer>
+    <script th:src="@{/script.js}"></script>
 </body>
 
 </html>

@@ -12,18 +12,24 @@
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Comprador</th>
                     <th>Data da Venda</th>
-                    <th></th>
+                    <th>Total da Venda</th>
+                    <!-- <th></th> -->
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="umaVenda : ${listaVendas}">
                     <td th:text="${umaVenda.id}"></td>
-                    <td th:text="${umaVenda.dataVenda}"></td>
-                    <td>
+                    <td th:text="${umaVenda.comprador.pessoaCli}"></td>
+                    <td th:if="${umaVenda.dataVenda}"
+                            th:text="${#dates.format(umaVenda.dataVenda, 'dd/MM/yyyy')}"></td>
+                    <td th:unless="${umaVenda.dataVenda}">Não Informada</td>
+                    <td th:text="${'R$ ' + #aggregates.sum(umaVenda.itemVendido.![getValorFinal])}"></td>
+                    <!-- <td>
                         <a th:href="@{'/vendas/alterar/' + ${umaVenda.id}}" class="btn btn-warning">Alterar</a>
                         <a th:href="@{'/vendas/deletar/' + ${umaVenda.id}}" class="btn btn-danger">Excluir</a>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
         </table>

@@ -10,19 +10,35 @@
         <form th:action="@{/produtossofa/(form)}" method="POST" th:object="${produtoSofa}">
             <input type="hidden" th:field="*{id}">
             <div class="form-group">
+                <label for="txtmodelo">Nome do Modelo:</label>
+                <input type="text" th:field="*{modelo}" class="form-control" id="txtmodelo">
+                <p th:if="${#fields.hasErrors('modelo')}"
+                        th:errors="*{modelo}"
+                        class="alert alert-danger"></p>
+            </div>
+            <div class="form-group">
                 <label for="txtcor">Cor:</label>
                 <input type="text" th:field="*{cor}" class="form-control" id="txtcor">
+                <p th:if="${#fields.hasErrors('cor')}"
+                        th:errors="*{cor}"
+                        class="alert alert-danger"></p>
             </div>
             <div class="form-group">
-                <label for="txtlargura">Largura:</label>
+                <label for="txtlargura">Largura (cm):</label>
                 <input type="text" th:field="*{largura}" class="form-control" id="txtlargura">
+                <p th:if="${#fields.hasErrors('largura')}"
+                        th:errors="*{largura}"
+                        class="alert alert-danger"></p>
             </div>
             <div class="form-group">
-                <label for="txtcomprimento">Comprimento:</label>
+                <label for="txtcomprimento">Comprimento (cm):</label>
                 <input type="text" th:field="*{comprimento}" class="form-control" id="txtcomprimento">
+                <p th:if="${#fields.hasErrors('comprimento')}"
+                        th:errors="*{comprimento}"
+                        class="alert alert-danger"></p>
             </div>
             <div class="form-group">
-                <label for="txtpreco">Preço:</label>
+                <label for="txtpreco">Preço (R$):</label>
                 <input type="number" th:field="*{preco}" class="form-control" id="txtpreco">
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>

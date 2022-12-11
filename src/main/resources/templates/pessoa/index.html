@@ -23,13 +23,32 @@
                     <td th:text="${umaPessoa.telefone}"></td>
                     <td>
                         <a th:href="@{'/pessoas/alterar/' + ${umaPessoa.id}}" class="btn btn-warning">Alterar</a>
-                        <a th:href="@{'/pessoas/deletar/' + ${umaPessoa.id}}" class="btn btn-danger">Excluir</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${umaPessoa.id}">Excluir</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </main>
+    <div class="modal" tabindex="-1" id="modalpessoa">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Pessoa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que quer excluir a Pessoa?</p>
+                <p><b>ATENÇÃO</b>: Se não estiver conseguindo excluir uma PESSOA provavelmente ela deve estar associado em outro cadastro!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <footer th:include="layout :: footer"></footer>
+    <script th:src="@{/script2.js}"></script>
 </body>
 
 </html>

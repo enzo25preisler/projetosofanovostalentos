@@ -1,7 +1,10 @@
 package br.univille.projetosofanovostalentos.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +33,10 @@ public class ProdutoSofaController {
     }
 
     @PostMapping(params = "form")
-    public ModelAndView save(ProdutoSofa produtoSofa){
+    public ModelAndView save(@Valid ProdutoSofa produtoSofa, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return new ModelAndView("produtosofa/form","produtoSofa",produtoSofa);
+        }
         service.save(produtoSofa);
         return new ModelAndView("redirect:/produtossofa");
     }

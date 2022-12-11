@@ -7,7 +7,19 @@
 <body>
     <nav th:replace="layout :: menu"></nav>
     <main class="container">
-        
+        <form th:action="@{/clientes/(form)}" method="POST" th:object="${cliente}">
+
+            <div class="form-group">
+                <label for="txtpessoa">Pessoa:</label>
+                <select class="form-select" id="txtpessoa" th:field="*{pessoaCli}">
+                    <option th:each="umaPessoa : ${listaPessoas}" 
+                        th:text="${umaPessoa.nome}"
+                        th:value="${umaPessoa.id}">
+                    </option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
     </main>
     <footer th:include="layout :: footer"></footer>
 </body>

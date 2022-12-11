@@ -10,12 +10,27 @@
         <form th:action="@{/funcionarios/(form)}" method="POST" th:object="${funcionario}">
             <input type="hidden" th:field="*{id}">
             <div class="form-group">
+                <label for="txtpessoa">Pessoa:</label>
+                <select class="form-select" id="txtpessoa" th:field="*{pessoaFun}">
+                    <option th:each="umaPessoa : ${listaPessoas}" 
+                        th:text="${umaPessoa.nome}"
+                        th:value="${umaPessoa.id}">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="txtsalario">Salário:</label>
-                <input type="number" th:field="*{salario}" class="form-control" id="txtsalario">
+                <input type="number" step="0.01" th:field="*{salario}" class="form-control" id="txtsalario">
+                <p th:if="${#fields.hasErrors('salario')}"
+                        th:errors="*{salario}"
+                        class="alert alert-danger"></p>
             </div>
             <div class="form-group">
                 <label for="txtcargo">Cargo:</label>
                 <input type="text" th:field="*{cargo}" class="form-control" id="txtcargo">
+                <p th:if="${#fields.hasErrors('cargo')}"
+                        th:errors="*{cargo}"
+                        class="alert alert-danger"></p>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>

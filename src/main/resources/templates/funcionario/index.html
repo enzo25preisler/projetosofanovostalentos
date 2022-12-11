@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Nome</th>
                     <th>Salário</th>
                     <th>Cargo</th>
                     <th></th>
@@ -20,17 +21,37 @@
             <tbody>
                 <tr th:each="umFuncionario : ${listaFuncionarios}">
                     <td th:text="${umFuncionario.id}"></td>
+                    <td th:text="${umFuncionario.pessoaFun}"></td>
                     <td th:text="${umFuncionario.salario}"></td>
                     <td th:text="${umFuncionario.cargo}"></td>
                     <td>
                         <a th:href="@{'/funcionarios/alterar/' + ${umFuncionario.id}}" class="btn btn-warning">Alterar</a>
-                        <a th:href="@{'/funcionarios/deletar/' + ${umFuncionario.id}}" class="btn btn-danger">Excluir</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${umFuncionario.id}">Excluir</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </main>
+    <div class="modal" tabindex="-1" id="modalfuncionario">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Funcionário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que quer excluir o Funcionário?</p>
+                <p><b>ATENÇÃO</b>: Se não estiver conseguindo excluir um CLIENTE provavelmente ele deve estar associado em outro cadastro!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <footer th:include="layout :: footer"></footer>
+    <script th:src="@{/script3.js}"></script>
 </body>
 
 </html>

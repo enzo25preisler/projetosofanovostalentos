@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Modelo</th>
                     <th>Cor</th>
                     <th>Largura</th>
                     <th>Comprimento</th>
@@ -22,19 +23,39 @@
             <tbody>
                 <tr th:each="umProduto : ${listaProdutos}">
                     <td th:text="${umProduto.id}"></td>
+                    <td th:text="${umProduto.modelo}"></td>
                     <td th:text="${umProduto.cor}"></td>
                     <td th:text="${umProduto.largura}"></td>
                     <td th:text="${umProduto.comprimento}"></td>
-                    <td th:text="${umProduto.preco}"></td>
+                    <td th:text="${'R$ ' + umProduto.preco}"></td>
                     <td>
                         <a th:href="@{'/produtossofa/alterar/' + ${umProduto.id}}" class="btn btn-warning">Alterar</a>
-                        <a th:href="@{'/produtossofa/deletar/' + ${umProduto.id}}" class="btn btn-danger">Excluir</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${umProduto.id}">Excluir</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </main>
+    <div class="modal" tabindex="-1" id="modalprodutosofa">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Produto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que quer excluir o Produto?</p>
+                <p><b>ATENÇÃO</b>: Se não estiver conseguindo excluir um PRODUTO provavelmente ele deve estar associado em outro cadastro!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <footer th:include="layout :: footer"></footer>
+    <script th:src="@{/script4.js}"></script>
 </body>
 
 </html>
