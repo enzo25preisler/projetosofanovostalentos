@@ -9,4 +9,5 @@ public interface PessoaService {
     Pessoa save(Pessoa pessoa);
     Pessoa findById(long id);
     void deletar(long id);
+    List<Pessoa> findByNome(String nome);
 }

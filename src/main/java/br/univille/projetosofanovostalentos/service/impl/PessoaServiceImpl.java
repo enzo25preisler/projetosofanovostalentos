@@ -39,5 +39,10 @@ public class PessoaServiceImpl implements PessoaService{
     public void deletar(long id) {
         repositorio.deleteById(id);
     }
+
+    @Override
+    public List<Pessoa> findByNome(String nome) {
+        return repositorio.findByNomeIgnoreCaseContaining(nome);
+    }
     
 }

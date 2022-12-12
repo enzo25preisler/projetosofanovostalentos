@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,15 +81,4 @@ public class VendaController {
         dados.put("novoItem", new ItemVenda());
         return new ModelAndView("venda/form",dados);
     }
-    
-    // @GetMapping("/alterar/{id}")
-    // public ModelAndView alterar(@PathVariable("id") long id) {
-    //     var venda = service.findById(id);
-    //     return new ModelAndView("venda/form","venda",venda);
-    // }
-    // @GetMapping("deletar/{id}")
-    // public ModelAndView deletar(@PathVariable("id") long id) {
-    //     service.deletar(id);
-    //     return new ModelAndView("redirect:/vendas");
-    // }
 }
