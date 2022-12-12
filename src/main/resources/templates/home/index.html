@@ -7,7 +7,13 @@
 <body>
     <nav th:replace="layout :: menu"></nav>
     <main class="container">
-        
+        <div class="d-grid gap-3">
+            <a class="btn btn-primary" href="/pessoas/novo">Criar cadastro de Pessoa</a>
+            <a class="btn btn-primary" href="/clientes/novo">Criar cadastro de Cliente</a>
+            <a class="btn btn-primary" href="/funcionarios/novo">Criar cadastro de Funcionário</a>
+            <a class="btn btn-primary" href="/produtossofa/novo">Criar cadastro de Produto</a>
+            <a class="btn btn-primary" href="/vendas/novo">Criar cadastro de Venda</a>
+        </div>
     </main>
     <footer th:include="layout :: footer"></footer>
 </body>
